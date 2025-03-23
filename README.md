@@ -1,29 +1,39 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/WXeqVgks)
 # final-project-skeleton
 
-* Team Number:
-* Team Name:
-* Team Members:
-* GitHub Repository URL:
+* Team Number: 11
+* Team Name: Circuit Breakers
+* Team Members: Eshan Singhal, Mohit Shah, Nandini Swami
+* GitHub Repository URL: https://github.com/upenn-embedded/final-project-s25-the-circuit-breakers
 * GitHub Pages Website URL: [for final submission]
 
 ## Final Project Proposal
 
 ### 1. Abstract
 
-*In a few sentences, describe your final project.*
+MicroBeat is an interactive at-home music production system that allows users to create and manipulate sounds using various input sensors. The system integrates pressure sensors for drum simulation, a potentiometer for volume control, and an accelerometer for dynamic sound modulation. The DFPlayer Mini MP3 module handles audio output, enabling seamless playback through a connected speaker. By combining these components, MicroBeat transforms user interactions into a live DJ-style music experience, making music production more accessible and engaging.
 
 ### 2. Motivation
 
 *What is the problem that you are trying to solve? Why is this project interesting? What is the intended purpose?*
 
+Traditional DJ sets contain a multitude of complex components with turntables, mixers, and MIDI components that require a relatively large learning curve. Additionally, this static setup can be limiting in terms of expressive control which constrains creativity.
+
+This project is very interesting because we ideate and develop a more expressive, intuitive medium to control music with various complex sensors. The intended purpose is to enable more complex DJing while increasing accessibility.
+
 ### 3. System Block Diagram
 
-*Show your high level design, as done in WS1 and WS2. What are the critical components in your system? How do they communicate (I2C?, interrupts, ADC, etc.)? What power regulation do you need?*
+![Block Diagram](images/block-diagram.jpg)
+
 
 ### 4. Design Sketches
 
-*What will your project look like? Do you have any critical design features? Will you need any special manufacturing techniques to achieve your vision, like power tools, laser cutting, or 3D printing?*
+The project will consist of a module that houses the ATmega328PB, speakers, and other core electronic components. There will be a separate component with various drum pads using pressure sensors as well as wristband with the accelerometer/gyroscope.
+
+Critical design features?
+
+There will be some special manufacturing techniques required such as 3D printing/laser cutting to create housing for the electronics, 3D printing to create the drum pads, and 3D printing to create the wristband for the accelerometer/gyroscope.
+
 
 ### 5. Software Requirements Specification (SRS)
 
