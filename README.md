@@ -13,8 +13,6 @@
 
 MicroBeat is an interactive at-home music production system that allows users to create and manipulate sounds using various input sensors. The system integrates pressure sensors for drum simulation, a potentiometer for volume control, and an accelerometer for dynamic sound modulation. The DFPlayer Mini MP3 module handles audio output, enabling seamless playback through a connected speaker. By combining these components, MicroBeat transforms user interactions into a live DJ-style music experience, making music production more accessible and engaging.
 
-MicroBeat is an at-home, music production system that enables anyone with a passion to make music to make unique beats. 
-
 ### 2. Motivation
 
 *What is the problem that you are trying to solve? Why is this project interesting? What is the intended purpose?*
