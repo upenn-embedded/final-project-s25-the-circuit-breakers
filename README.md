@@ -25,7 +25,7 @@ This project is very interesting because we ideate and develop a more expressive
 
 Hardware Design:
 
-![](hardwareFlow.png)
+![](blockdiagram.png)
 
 Software Design:
 
