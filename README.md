@@ -23,7 +23,7 @@ This project is very interesting because we ideate and develop a more expressive
 
 ### 3. System Block Diagram
 
-![Block Diagram](images/block-diagram.jpg)
+![Block Diagram](images/block-diagram.png)
 
 
 ### 4. Design Sketches
