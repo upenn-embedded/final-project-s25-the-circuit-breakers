@@ -29,7 +29,7 @@ Hardware Design:
 
 Software Design:
 
-
+![](projSoftwareDesign.png)
 
 ### 4. Design Sketches
 
@@ -62,7 +62,7 @@ Here, you will define any special terms, acronyms, or abbreviations you plan to 
 | SRS-02 | Communication between AtMega and DFP Module: The system must send UART commands to the DFPlayer Mini MP3 module with minimal delay to ensure immediate sound output upon input detection. We can validate this by measuring delay between input activation and audio playback using timestamp logging.                                                                                                                                         |
 | SRS-03 | ADC Input handling: The potentiometer (volume control) and pressure sensors must be read via ADC, mapped to corresponding levels, and converted into digital signals for audio processing. We can validate this by comparing raw ADC values with expected sensor outputs to ensure accurate readings within ±5% error margin. |
 | SRS-04 | Piano note generation + Pitch control (PWM): The system must detect button presses and assign the corresponding octave by setting a predefined frequency range. The system must read the potentiometer's ADC value and map it to specific note frequencies within the selected octave. The system must use Timer1 (OCR1A register) to generate a PWM square wave at the required frequency based on the selected octave and note. Use an oscilloscope to verify correct frequency output for each button press and potentiometer adjustment.                                                                                |
-| SRS-05 | Turntable movement detection: The system should be able to detect certain shapes from the accelerometer/gyroscope setup such as a circular motion, shaking, and vertical movement. We can test this functionality by rigorously testing the setup in a real environment to determine if the desired shape is being recorded. |
+| SRS-05 | Turntable movement detection: The system should be able to detect certain shapes from the accelerometer/gyroscope setup such as a circular motion, shaking, and vertical movement. We can test this functionality by rigorously testing the setup in a real environment to determine if the desired shape is being recorded.|
 
 ### 6. Hardware Requirements Specification (HRS)
 
@@ -98,7 +98,7 @@ The components we need include 3 piezo pressure sensors to represent the snare, 
 
 *How will you demonstrate your device on demo day? Will it be strapped to a person, mounted on a bicycle, require outdoor space? Think of any physical, temporal, and other constraints that could affect your planning.*
 
-We will demo the device by playing a preloaded song and individually demonstrating the functionality of each subsystem and explain the underlying hardware and software implementation and conclude by using all components simultaneously. Additionally, the accelerometer will be strapped to the wrist when controlling speed of the song. The piano will be tested separately by showing different notes by twisting the potentiometer and pressing buttons to change octave
+We will demo the device by playing a preloaded song and individually demonstrating the functionality of each subsystem and explain the underlying hardware and software implementation and conclude by using all components simultaneously. Additionally, the accelerometer will be strapped to the wrist when controlling speed of the song. The piano will be tested separately by showing different notes by twisting the potentiometer and pressing buttons to change octave.
 
 ### 9. Sprint Planning
 
