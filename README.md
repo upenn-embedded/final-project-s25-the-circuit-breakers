@@ -31,7 +31,7 @@ Hardware Design:
 
 Software Design:
 
-
+![](blockdiagramsoftware.png)
 
 ### 4. Design Sketches
 
