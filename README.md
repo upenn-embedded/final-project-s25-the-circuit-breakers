@@ -13,6 +13,8 @@
 
 *In a few sentences, describe your final project.*
 
+MicroBeat is an at-home, music production system that enables anyone with a passion to make music to make unique beats. 
+
 ### 2. Motivation
 
 *What is the problem that you are trying to solve? Why is this project interesting? What is the intended purpose?*
@@ -21,9 +23,21 @@
 
 *Show your high level design, as done in WS1 and WS2. What are the critical components in your system? How do they communicate (I2C?, interrupts, ADC, etc.)? What power regulation do you need?*
 
+Hardware Design:
+
+![](hardwareFlow.png)
+
+Software Design:
+
+
+
 ### 4. Design Sketches
 
 *What will your project look like? Do you have any critical design features? Will you need any special manufacturing techniques to achieve your vision, like power tools, laser cutting, or 3D printing?*
+
+![](finalProjDesign.jpeg)
+
+We will need to 3D print a box to place the three subsystems of our project. On the base of the box, the turntable will be printed onto the base and the pads are placed to the right. Platforms will be placed above the pressure sensors and the circuitry will be placed inside the box (breadboard + wiring for the sensors). The accelerator is tied to the wrist using a band for use in simulating the turntable.
 
 ### 5. Software Requirements Specification (SRS)
 
@@ -39,10 +53,11 @@ Here, you will define any special terms, acronyms, or abbreviations you plan to 
 
 | ID     | Description                                                                                                                                                                                                              |
 | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| SRS-01 | The IMU 3-axis acceleration will be measured with 16-bit depth every 100 milliseconds +/-10 milliseconds                                                                                                                 |
-| SRS-02 | The distance sensor shall operate and report values at least every .5 seconds.                                                                                                                                           |
-| SRS-03 | Upon non-nominal distance detected (i.e., the trap mechanism has changed at least 10 cm from the nominal range), the system shall be able to detect the change and alert the user in a timely manner (within 5 seconds). |
-| SRS-04 | Upon a request from the user, the system shall get an image from the internal camera and upload the image to the user system within 10s.                                                                                 |
+| SRS-01 | Real time sensor input processing: System must accurately detect pressure changes (drums), potentiometer adjustments (note change), and accelerometer motion to trigger corresponding audio responses. To validate this we can use an oscilloscope or logic analyzer to verify signal integrity and response time from sensors to the ATmega328’s input pins.                                                                                                                |
+| SRS-02 | Communication between AtMega and DFP Module: The system must send UART commands to the DFPlayer Mini MP3 module with minimal delay to ensure immediate sound output upon input detection. We can validate this by measuring delay between input activation and audio playback using timestamp logging.                                                                                                                                         |
+| SRS-03 | ADC Input handling: The potentiometer (volume control) and pressure sensors must be read via ADC, mapped to corresponding levels, and converted into digital signals for audio processing. We can validate this by comparing raw ADC values with expected sensor outputs to ensure accurate readings within ±5% error margin. |
+| SRS-04 | Piano note generation + Pitch control (PWM): The system must detect button presses and assign the corresponding octave by setting a predefined frequency range. The system must read the potentiometer's ADC value and map it to specific note frequencies within the selected octave. The system must use Timer1 (OCR1A register) to generate a PWM square wave at the required frequency based on the selected octave and note. Use an oscilloscope to verify correct frequency output for each button press and potentiometer adjustment.                                                                                |
+| SRS-05 | Turntable movement detection: The system should be able to detect certain shapes from the accelerometer/gyroscope setup such as a circular motion, shaking, and vertical movement. We can test this functionality by rigorously testing the setup in a real environment to determine if the desired shape is being recorded. |
 
 ### 6. Hardware Requirements Specification (HRS)
 
@@ -58,10 +73,11 @@ Here, you will define any special terms, acronyms, or abbreviations you plan to 
 
 | ID     | Description                                                                                                                        |
 | ------ | ---------------------------------------------------------------------------------------------------------------------------------- |
-| HRS-01 | A distance sensor shall be used for obstacle detection. The sensor shall detect obstacles at a maximum distance of at least 10 cm. |
-| HRS-02 | A noisemaker shall be inside the trap with a strength of at least 55 dB.                                                           |
-| HRS-03 | An electronic motor shall be used to reset the trap remotely and have a torque of 40 Nm in order to reset the trap mechanism.      |
-| HRS-04 | A camera sensor shall be used to capture images of the trap interior. The resolution shall be at least 480p.                       |
+| HRS-01 | The pressure sensors shall carry a maximum load of 1 kg of applied force and measurements above this threshold shall saturate to 1 kg. Connected to a speaker, drum pads attached to the sensors shall mimic sounds of a hi-hat, snare, and bass drum. ADC readings shall change the volume of these sounds according to the pressure applied. |
+| HRS-02 | The potentiometer shall be set at one of 8 notes in the current octave, depending on the amount turned. A max voltage of 5 V shall be measured at the nodes of the potentiometer before input to the ADC. 8 concurrent voltage ranges of step size 0.4 V shall be used to differentiate between each note.                                                           |
+| HRS-03 | Speakers shall be used to output preloaded music and signals sent from the piano and drum pads. This shall be validated through using the DFPlayer module where 30 module levels dictate the volume at which the signal is sent at.                      |
+| HRS-04 | The IMU should have a 500 Hz sampling rate because it should be sufficient to detect most fast hand motions. We can test if this condition is met by sampling for 1 second and confirming the number of recorded samples is 500. |
+| HRS-05 | The IMU should also have accurate relative position and rotation accuracy. This can be tested by making various hand motions and confirming that the motion is being accurately represented by the IMU via 3D plotting. |
 
 ### 7. Bill of Materials (BOM)
 
@@ -69,9 +85,15 @@ Here, you will define any special terms, acronyms, or abbreviations you plan to 
 
 *In addition to this written response, copy the Final Project BOM Google Sheet and fill it out with your critical components (think: processors, sensors, actuators). Include the link to your BOM in this section.*
 
+The components we need include 3 piezo pressure sensors to represent the snare, hi-hat, and the bass drum. The preferred type had a range of 0 lbs to 4.4 lbs., as nothing more than the max was needed due to continuous playing (taps). The DFPlayer Mini allows for manipulation with prerecorded audio and speaker output. The accelerometer is crucial as it changes audio according to circular or vertical motion of the device attached to the wrist, simulating a turntable.
+
+[Final Project BOM Link](https://docs.google.com/spreadsheets/d/1Nn4dQrrRypU64VvPleaDI948HICvbxTs2iRi9GGM9Bo/edit?usp=sharing)
+
 ### 8. Final Demo Goals
 
 *How will you demonstrate your device on demo day? Will it be strapped to a person, mounted on a bicycle, require outdoor space? Think of any physical, temporal, and other constraints that could affect your planning.*
+
+We will demo the device by playing a preloaded song and individually demonstrating the functionality of each subsystem and explain the underlying hardware and software implementation and conclude by using all components simultaneously. Additionally, the accelerometer will be strapped to the wrist when controlling speed of the song. The piano will be tested separately by showing different notes by twisting the potentiometer and pressing buttons to change octave
 
 ### 9. Sprint Planning
 
@@ -79,10 +101,10 @@ Here, you will define any special terms, acronyms, or abbreviations you plan to 
 
 | Milestone  | Functionality Achieved | Distribution of Work |
 | ---------- | ---------------------- | -------------------- |
-| Sprint #1  |                        |                      |
-| Sprint #2  |                        |                      |
-| MVP Demo   |                        |                      |
-| Final Demo |                        |                      |
+| Sprint #1  |  Source all the hardware and plan the structure and exact functionality of software and build CAD                      |  Eshan: Turntable/Sound morpher, Mohit: Drum pads, Nandini: Piano                    |
+| Sprint #2  | Build software and generate cohesive working prototype                       |  Eshan: Turntable/Sound morpher, Mohit: Drum pads, Nandini: Piano                    |
+| MVP Demo   |  Work through integration bugs and flow                      | Working together to solve issues                     |
+| Final Demo |   Rigorously test and enable additional functionality (if possible)                     |   Working together to solve issues                   |
 
 **This is the end of the Project Proposal section. The remaining sections will be filled out based on the milestone schedule.**
 
