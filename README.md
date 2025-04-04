@@ -116,7 +116,7 @@ We will demo the device by playing a preloaded song and individually demonstrati
 ## Sprint Review #1
 
 ### Last week's progress
-We have built the part of the circuit that will be used for the piano, which controls piano notes and octaves. To control the keys in the octave, we switched from the potentiometer to a rotary encoder. The octave is controlled by 2 buttons that send the octave up or down. For now, the output is connected to a buzzer but when our parts arrive we will be using a speaker instead. 
+We have built the part of the circuit that will be used for the piano, which controls piano notes and octaves. To control the keys in the octave, we switched from the potentiometer to a rotary encoder. The octave is controlled by 2 buttons that send the octave up or down. For now, the output is connected to a buzzer but when our parts arrive we will be using a speaker instead. We have also ordered parts and are discussing things to work on during the time that parts don't arrive.
 
 
 ### Current state of project
