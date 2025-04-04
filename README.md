@@ -116,14 +116,17 @@ We will demo the device by playing a preloaded song and individually demonstrati
 ## Sprint Review #1
 
 ### Last week's progress
+We have built the part of the circuit that will be used for the piano, which controls piano notes and octaves. To control the keys in the octave, we switched from the potentiometer to a rotary encoder. The octave is controlled by 2 buttons that send the octave up or down. For now, the output is connected to a buzzer but when our parts arrive we will be using a speaker instead. 
 
 
 ### Current state of project
+We are currently waiting on the arrival of crucial parts to our project. In the meantime, we each have been sourcing available parts from lab, doing research for our implementation, and working on parts that are not dependent on the DFP Audio Module. Currently, we have the piano part of the circuit set up and almost fully working (will be complete when speaker arrives). 
 
 ![](progress1.jpeg)
 
 
 ### Next week's plan
+For the coming week we are expecting the DFP module to arrive as well as the other parts. First we can finish off the piano part of the project by connecting the speaker to the circuit. We will work on learning how to use the DFP module including uploading MP3 files to it, connecting it to the ATMega328 and connecting our speaker to test output. Once this is working we are going to aim to finish the circuitry set up for the pressure pads for the drum beats and the set up for the gyroscope and accelerometer. Once we can properly read in input then the following week we can work on refining the code. Along with this, we will aim to have a rough draft for our 3D printing.  
 
 ## Sprint Review #2
 
