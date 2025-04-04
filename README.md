@@ -117,7 +117,11 @@ We will demo the device by playing a preloaded song and individually demonstrati
 
 ### Last week's progress
 
+
 ### Current state of project
+
+![](progress1.jpeg)
+
 
 ### Next week's plan
 
