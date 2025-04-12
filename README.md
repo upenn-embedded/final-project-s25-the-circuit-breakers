@@ -131,10 +131,17 @@ For the coming week we are expecting the DFP module to arrive as well as the oth
 ## Sprint Review #2
 
 ### Last week's progress
+Last week, we did research on the three primary subsytems for our DJ set, the piano, drums, and IMU control. We each worked individually on parts not dependent on the DF Player Module and helped each other out on the implementation of certain tasks. The piano had been wired up by using a rotary encoder and the IMU was being tested. The force sensors were also wired to the breadboard and experimented with using ADC.
 
 ### Current state of project
+![](forceSensorCircuit.jpeg)
+
+![](forceSerialTest.jpeg)
+
+We have received the parts we ordered and are currently working on individual parts of the DJ set, focusing on bringing everything together through power management. Software for the IMU is in progress and the force sensors have been implemented through ADC. We are also focusing on debugging software and hardware for the piano based on the buttons and knob.
 
 ### Next week's plan
+The plan for next week is to mainly implement the DFP module for use in our project, generating sounds at different volumes. The module's input will be an ADC read from 3 channels of the force sensors, representing the hi-hat, snare drum, and bass drum. One of the primary tasks is to interface the sensors' output with the input of the module, and gaining familiarity with how to program the player in Arduino IDE. Another task is to write the I2C driver for the IMU and moving towards implementation of motion feedback for the generated tunes. We will then test out the IMU with the rest of the system. For the piano, debugging and using the oscilloscope to capture signals for testing is something we will work on next week too.
 
 ## MVP Demo
 
