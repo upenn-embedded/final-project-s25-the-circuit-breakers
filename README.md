@@ -146,19 +146,36 @@ The plan for next week is to mainly implement the DFP module for use in our proj
 ## MVP Demo
 
 1. Show a system block diagram & explain the hardware implementation.
+![alt text](newhardwarechart.png)
+The ATMega328PB controls all three parts of MicroBeat, the piano, drumset, and IMU implementation. The microcontroller is connected to the DF Player Mini Module through an RX to TX connection. The DF Player Mini is then wired to the speaker output. Additionally, the microcontroller is wired to the three force sensors, simulating a snare, bass drum, and a hi-hat. For the piano, the rotary encoder and buttons are connected to the microcontroller through GPIO and the speaker is connected through PWM. The IMU is connected to a separate ATMega328Pb and will eventually be wired to another DF Player Mini for song modulation (playback speed and pause functionality).
+
 2. Explain your firmware implementation, including application logic and critical drivers you've written.
+The code for the piano is based on PWM, changing OCR1A and OCR1B according to a range of 8 notes across 4 octaves. The code for the drumset is based on ADC conversion, noting that the complete range of ADC values based on force to the sensor is from 0 to 900. Additionally, the DF Player Module plays music, change volume, and performs other commands through a series of 10 bytes sent one-by-one over UART between the microcontroller. The IMU is powered by an IMU driver consisting of functions that read the accelerometer and the gyroscope.
+
 3. Demo your device.
+[Slideshow Link](https://docs.google.com/presentation/d/1nYgInTRyewJpaWn2flAvf959YhefqQQz_XKIyyjOefc/edit?usp=sharing)
+Demoed with James
+
 4. Have you achieved some or all of your Software Requirements Specification (SRS)?
+We have achieved only one sound being playing at a time for the drumset through ADC testing and finding the threshold where exactly one of the sensors activates. We have also tested frequencies and ensured that OCR1A is set appropriately by measuring the oscilloscope.
 
    1. Show how you collected data and the outcomes.
+Data was collected through printing out to the serial monitor and cross-checking measurements onto the scope. The serial data printed is similar to last week's sprint.
+
 5. Have you achieved some or all of your Hardware Requirements Specification (HRS)?
+We did achieve the 
 
    1. Show how you collected data and the outcomes.
 6. Show off the remaining elements that will make your project whole: mechanical casework, supporting graphical user interface (GUI), web portal, etc.
 7. What is the riskiest part remaining of your project?
+The riskiest part remaining is to integrate all individual parts together. This will require thorough planning based on where we want to position the circuits and other parts like the speakers.
 
    1. How do you plan to de-risk this?
+We plan to de-risk this by optimizing and considering what pins are needed from all of the individual parts before integrating into the overall circuit. There is a possibility for pin overlap, requiring us to make changes to our code such as timers if needed. We will also all come into the lab one day to fit everything together on the box.
+
 8. What questions or help do you need from the teaching team?
+
+The primary question we will ask the teaching team is how to power our device without connection from the laptop. During our MVP demo, James told us so use the voltage power supply as our power source so that's what we'll do. Additonally, our next challenge is to be able to attach the IMU to the wrist using a band, while still connected via I2C to the microcontroller. Testing out the IMU, we realized only a few feet above and below the origin are possible to achieve so this will be taken into consideration.
 
 ## Final Project Report
 
