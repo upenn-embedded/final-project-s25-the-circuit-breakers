@@ -46,46 +46,14 @@ void rotary_init() {
 
 void pwm_init() {    
     // BUZZER INITIALIZATION
-//    DDRD |= (1 << BUZZER);
     DDRB |= (1 << BUZZER);
-    
-    // Set PWM, Phase Correct Mode (1 0 1))
-//    TCCR0A = (1 << WGM00);
-//    TCCR0B = (1 << WGM02);
-//    
-//    // Set PWM to non-inverting mode on PD5 (OC0B)
-//    TCCR0A |= (1 << COM0B1);
-//    
-//    // Set prescaler to 256 => 16MHz/256 = 62.5kHz
-//    TCCR0B |= (1 << CS02);
-//    
-//    // Set TOP value (OCR0A) to set PWM frequency.
-//    // TOP = 16M / (2 * 440 * 256) = 70
-//    OCR0A = 70;
-//    
-//    // Set duty cycle to 50%: OCR0B = TOP/2 = 35
-//    OCR0B = 0;
-//    TCCR0A &= ~(1 << COM0B1); // initialize it to off
-    
     TCCR1A = (1 << COM1A0);
     TCCR1B = (1 << WGM12) | (1 << CS11);
 }
 
 
 void play_note(uint16_t freq, uint16_t duration_ms) {
-//    printf("playing note");
-//    uint16_t top = (F_CPU / (2 * 256 * freq));
-//    OCR0A = top;
-//    OCR0B = top / 2; // 50% duty
-//    TCCR0A |= (1 << COM0B1); // enable buzzer
-//
-//    for (uint16_t i = 0; i < duration_ms; i++) {
-//        _delay_ms(1);
-//    }
-//
-//    TCCR0A &= ~(1 << COM0B1); // turn off
-//    OCR0B = 0;
-        printf("playing note: %d Hz\n", freq);
+    printf("playing note: %d Hz\n", freq);
 
     uint32_t top = (F_CPU / (2UL * 8 * freq)); // Prescaler = 8
 
