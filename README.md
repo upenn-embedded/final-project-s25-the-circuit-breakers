@@ -122,7 +122,7 @@ We have built the part of the circuit that will be used for the piano, which con
 ### Current state of project
 We are currently waiting on the arrival of crucial parts to our project. In the meantime, we each have been sourcing available parts from lab, doing research for our implementation, and working on parts that are not dependent on the DFP Audio Module. Currently, we have the piano part of the circuit set up and almost fully working (will be complete when speaker arrives). 
 
-![](progress1.jpeg)
+![](pianoKeysWeek1.jpeg)
 
 
 ### Next week's plan
@@ -131,17 +131,19 @@ For the coming week we are expecting the DFP module to arrive as well as the oth
 ## Sprint Review #2
 
 ### Last week's progress
-Last week, we did research on the three primary subsytems for our DJ set, the piano, drums, and IMU control. We each worked individually on parts not dependent on the DF Player Module and helped each other out on the implementation of certain tasks. The piano had been wired up by using a rotary encoder and the IMU was being tested. The force sensors were also wired to the breadboard and experimented with using ADC.
+Last week, we did research on the three primary subsytems for our DJ set, the piano, drums, and IMU control. We each worked individually on parts not dependent on the DF Player Module and helped each other out on the implementation of certain tasks. The piano keys circuitry is complete including the buzzer and rotary encoder. We are recieving input values from the encoder and outputting different frequencies but facing a challenge wehre certain frequencies are not playing. The IMU wiring is done and is being tested. The force sensors were also wired to the breadboard and experimented with using ADC.
 
 ### Current state of project
 ![](forceSensorCircuit.jpeg)
 
 ![](forceSerialTest.jpeg)
 
+![](pianoKeysWeek2.jpeg)
+
 We have received the parts we ordered and are currently working on individual parts of the DJ set, focusing on bringing everything together through power management. Software for the IMU is in progress and the force sensors have been implemented through ADC. We are also focusing on debugging software and hardware for the piano based on the buttons and knob.
 
 ### Next week's plan
-The plan for next week is to mainly implement the DFP module for use in our project, generating sounds at different volumes. The module's input will be an ADC read from 3 channels of the force sensors, representing the hi-hat, snare drum, and bass drum. One of the primary tasks is to interface the sensors' output with the input of the module, and gaining familiarity with how to program the player in Arduino IDE. Another task is to write the I2C driver for the IMU and moving towards implementation of motion feedback for the generated tunes. We will then test out the IMU with the rest of the system. For the piano, debugging and using the oscilloscope to capture signals for testing is something we will work on next week too.
+The plan for next week is to mainly implement the DFP module for use in our project, generating sounds at different volumes. The module's input will be an ADC read from 3 channels of the force sensors, representing the hi-hat, snare drum, and bass drum. One of the primary tasks is to interface the sensors' output with the input of the module, and gaining familiarity with how to program the player in Arduino IDE. Another task is to write the I2C driver for the IMU and moving towards implementation of motion feedback for the generated tunes. We will then test out the IMU with the rest of the system. For the piano, we want to fix our current bug with specific frequencies and change the output from a buzzer to a speaker. We want to also use the oscilloscope to capture signals for testing. 
 
 ## MVP Demo
 
@@ -160,7 +162,24 @@ Demoed with James
 We have achieved only one sound being playing at a time for the drumset through ADC testing and finding the threshold where exactly one of the sensors activates. We have also tested frequencies and ensured that OCR1A is set appropriately by measuring the oscilloscope.
 
    1. Show how you collected data and the outcomes.
+<<<<<<< Updated upstream
 Data was collected through printing out to the serial monitor and cross-checking measurements onto the scope. The serial data printed is similar to last week's sprint.
+=======
+
+Checking PWM encodings through oscilloscope:
+Key 0, octave 0 ~ expected: 523 Hz, actual: 522 Hz
+![](octave0.jpg)
+
+Key 0, octave 1 ~ expected: 261 Hz, actual: 522 Hz
+![](octave1.jpg)
+
+Key 0, octave 2 ~ expected: 1046 Hz, actual: 522 Hz
+![](octave2.jpg)
+
+Key 0, octave 3 ~ expected: 1046 Hz, actual: 522 Hz
+![](octave3.jpg)
+
+>>>>>>> Stashed changes
 
 5. Have you achieved some or all of your Hardware Requirements Specification (HRS)?
 We did achieve the 
