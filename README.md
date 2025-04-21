@@ -162,9 +162,8 @@ Demoed with James
 We have achieved only one sound being playing at a time for the drumset through ADC testing and finding the threshold where exactly one of the sensors activates. We have also tested frequencies and ensured that OCR1A is set appropriately by measuring the oscilloscope.
 
    1. Show how you collected data and the outcomes.
-<<<<<<< Updated upstream
 Data was collected through printing out to the serial monitor and cross-checking measurements onto the scope. The serial data printed is similar to last week's sprint.
-=======
+
 
 Checking PWM encodings through oscilloscope:
 Key 0, octave 0 ~ expected: 523 Hz, actual: 522 Hz
@@ -178,8 +177,6 @@ Key 0, octave 2 ~ expected: 1046 Hz, actual: 522 Hz
 
 Key 0, octave 3 ~ expected: 1046 Hz, actual: 522 Hz
 ![](octave3.jpg)
-
->>>>>>> Stashed changes
 
 5. Have you achieved some or all of your Hardware Requirements Specification (HRS)?
 We did achieve the 
