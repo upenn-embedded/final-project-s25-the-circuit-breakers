@@ -93,3 +93,31 @@ void bufferTransmitDF(uint8_t command, uint8_t p1, uint8_t p2) {
         UDR0 = sendBuffer[i];
     }
 }
+
+void dfPlayerPlay(uint16_t track) {
+    int sendBuffer[10] = {0x7E, 0xFF, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xEF};
+    sendBuffer[3] = 0x03;
+    sendBuffer[5] = track >> 8;
+    sendBuffer[6] = track & 0xFF;
+    uint16_t checksum = 0xFFFF - (0xFF + 0x06 + 0x03 + 0x00 + sendBuffer[5] + sendBuffer[6]) + 1;
+    sendBuffer[7] = (checksum >> 8);
+    sendBuffer[8] = (checksum & 0xFF);
+    for (int i = 0; i < 10; i++) { //sends over USART1
+        while (!(UCSR1A & (1 << UDRE1)));
+        UDR1 = sendBuffer[i];
+    }
+}
+
+void dfPlayerVolume(uint16_t volume) {
+    int sendBuffer[10] = {0x7E, 0xFF, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xEF};
+    sendBuffer[3] = 0x06;
+    sendBuffer[5] = volume >> 8;
+    sendBuffer[6] = volume & 0xFF;
+    uint16_t checksum = 0xFFFF - (0xFF + 0x06 + 0x06 + 0x00 + sendBuffer[5] + sendBuffer[6]) + 1;
+    sendBuffer[7] = (checksum >> 8);
+    sendBuffer[8] = (checksum & 0xFF);
+    for (int i = 0; i < 10; i++) { //sends over USART1
+        while (!(UCSR1A & (1 << UDRE1)));
+        UDR1 = sendBuffer[i];
+    }
+}
