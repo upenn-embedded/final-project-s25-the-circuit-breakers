@@ -3,7 +3,6 @@
 #include "imu.h"
 
 #include <stdio.h>
-#include "uart.h"
 #include <avr/io.h>
 #include <stdarg.h>
 #include <string.h>
@@ -43,7 +42,7 @@ void read_accel_gyro(IMU_Data* data) {
 }
 
 void calibrate_imu(IMU_Data* offset) {
-    float iters = 100.0;
+    float iters = 300.0;
     IMU_Data data;
     
     for (int i = 0; i < iters; i++) {
@@ -65,7 +64,7 @@ void calibrate_imu(IMU_Data* offset) {
     offset->gz /= iters;
 }
 
-void imu_uart_init() {
+void song_uart_init() {
     /*Set baud rate */
     UBRR1H = (unsigned char)(UART_BAUD_PRESCALER>>8);
     UBRR1L = (unsigned char)UART_BAUD_PRESCALER;
@@ -89,35 +88,20 @@ void bufferTransmitDF(uint8_t command, uint8_t p1, uint8_t p2) {
     sendBuffer[7] = (checksum >> 8);
     sendBuffer[8] = (checksum & 0xFF);
     for (int i = 0; i < 10; i++) {
-        while (!(UCSR0A & (1 << UDRE0)));
-        UDR0 = sendBuffer[i];
-    }
-}
-
-void dfPlayerPlay(uint16_t track) {
-    int sendBuffer[10] = {0x7E, 0xFF, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xEF};
-    sendBuffer[3] = 0x03;
-    sendBuffer[5] = track >> 8;
-    sendBuffer[6] = track & 0xFF;
-    uint16_t checksum = 0xFFFF - (0xFF + 0x06 + 0x03 + 0x00 + sendBuffer[5] + sendBuffer[6]) + 1;
-    sendBuffer[7] = (checksum >> 8);
-    sendBuffer[8] = (checksum & 0xFF);
-    for (int i = 0; i < 10; i++) { //sends over USART1
         while (!(UCSR1A & (1 << UDRE1)));
         UDR1 = sendBuffer[i];
     }
 }
 
-void dfPlayerVolume(uint16_t volume) {
-    int sendBuffer[10] = {0x7E, 0xFF, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xEF};
-    sendBuffer[3] = 0x06;
-    sendBuffer[5] = volume >> 8;
-    sendBuffer[6] = volume & 0xFF;
-    uint16_t checksum = 0xFFFF - (0xFF + 0x06 + 0x06 + 0x00 + sendBuffer[5] + sendBuffer[6]) + 1;
-    sendBuffer[7] = (checksum >> 8);
-    sendBuffer[8] = (checksum & 0xFF);
-    for (int i = 0; i < 10; i++) { //sends over USART1
-        while (!(UCSR1A & (1 << UDRE1)));
-        UDR1 = sendBuffer[i];
-    }
+void play_track(uint16_t track) {
+    bufferTransmitDF(0x03, track >> 8, track & 0xFF);
+}
+
+void change_track_volume(uint16_t volume) {
+    bufferTransmitDF(0x06, volume >> 8, volume & 0xFF);
+}
+
+/// 0 = Normal, 1 = Pop, 2 = Rock, 3 = Jazz, 4 = Classic, 5 = Bass
+void set_track_eq(uint8_t eq_mode) {
+    bufferTransmitDF(0x07, 0x00, eq_mode);
 }
