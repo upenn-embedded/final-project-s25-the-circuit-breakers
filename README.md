@@ -273,6 +273,8 @@ Reflect on your project. Some questions to address:
 * Did you encounter obstacles that you didn’t anticipate?
 * What could be a next step for this project?
 
+Over the course of 5 weeks, we were able to implement the concepts we learned throughout the course to a final project of our inspiration, a DJ set that provides functionality in multiple areas such as a drumset, a piano, and volume control by the IMU. The primary skill we learned through this process was integration and how code can be made simpler when combining across multiple devices. This involved abstracting methods used in separate .c and .h files and identifying common pins before connecting to the same MCU. Something that went well was the divison of work between all group members, where each person focused on an area they felt most confident in before integrating the parts together. This allowed for weekly updates and the ability to help each other out on certain parts of the project. Working with the audio module was something new to us and time was spent to fully understand the manual, figuring out how bytes are sent to play music and perform other functions. If we were to repeat this process, we would have chosen a better audio module that has a higher maximum volume and can do other desired functions such as changing the playback speed. One obstacle we encountered along the way was figuring out integration as only Timer 1 was suitable for our project needs. Therefore, we ended up having to use 2 MCUs, where one MCU focused on IMU control and the other MCU focused on the piano and drumset.
+
 ## References
 
 Fill in your references here as you work on your final project. Describe any libraries used here.
