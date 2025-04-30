@@ -157,11 +157,11 @@ The plan for next week is to mainly implement the DFP module for use in our proj
 ## MVP Demo
 
 1. Show a system block diagram & explain the hardware implementation.
-   ![alt text](newhardwarechart.png)
-   ========
 
-   ![img](images/newhardwarechart.png)
+   ![img](mvpblock.png)
 
+<!-- ![alt text](newhardwarechart.png) -->
+<!-- ![img](images/newhardwarechart.png) -->
 The ATMega328PB controls all three parts of MicroBeat, the piano, drumset, and IMU implementation. The microcontroller is connected to the DF Player Mini Module through an RX to TX connection. The DF Player Mini is then wired to the speaker output. Additionally, the microcontroller is wired to the three force sensors, simulating a snare, bass drum, and a hi-hat. For the piano, the rotary encoder and buttons are connected to the microcontroller through GPIO and the speaker is connected through PWM. The IMU is connected to a separate ATMega328Pb and will eventually be wired to another DF Player Mini for song modulation (playback speed and pause functionality).
 
 2. Explain your firmware implementation, including application logic and critical drivers you've written.
