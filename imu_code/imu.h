@@ -15,5 +15,8 @@ int16_t read_imu(uint8_t regH, uint8_t regL);
 void read_accel_gyro(IMU_Data* data);
 void imu_timer_init();
 
+void dfPlayerPlay(uint16_t track);
+void dfPlayerVolume(uint16_t volume);
+
 
 #endif

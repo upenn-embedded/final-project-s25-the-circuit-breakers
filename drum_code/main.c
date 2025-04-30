@@ -13,6 +13,10 @@
 #include <stdlib.h>
 #include <xc.h>
 
+volatile int prevSnare = 0;
+volatile int prevBass = 0;
+volatile int prevHH = 0;
+
 void Initialize() {
     // Setup for ADC (10bit = 0-1023)
     // Clear power reduction bit for ADC
@@ -60,13 +64,17 @@ void bufferTransmitDF(uint8_t command, uint8_t p1, uint8_t p2) {
     sendBuffer[7] = (checksum >> 8);
     sendBuffer[8] = (checksum & 0xFF);
     for (int i = 0; i < 10; i++) {
-        while (!(UCSR0A & (1 << UDRE0)));
-        UDR0 = sendBuffer[i];
+        while (!(UCSR1A & (1 << UDRE1)));
+        UDR1 = sendBuffer[i];
     }
 }
 
+void play_track(uint16_t track) {
+    bufferTransmitDF(0x03, track >> 8, track & 0xFF);
+}
 
 
+//0001 is snare drum, 0002 is hi-hat, and 0003 is bass
 int main(void) {
     Initialize();
     uart_init();
@@ -77,7 +85,6 @@ int main(void) {
         ADMUX &= ~(1 << MUX3);
         int reading0 = ADC;
         printf("Hi-Hat: %d \n", reading0);
-        _delay_ms(200);
         
         ADMUX |= (1 << MUX0);
         ADMUX &= ~(1 << MUX1);
@@ -85,7 +92,6 @@ int main(void) {
         ADMUX &= ~(1 << MUX3);
         int reading1 = ADC;
         printf("Snare Drum: %d \n", reading1);
-        _delay_ms(200);
         
         ADMUX &= ~(1 << MUX0);
         ADMUX |= (1 << MUX1);
@@ -94,36 +100,52 @@ int main(void) {
         int reading2 = ADC;
         printf("Bass Drum: %d \n\n", reading2);
         
-        //handle conditions
-        if (reading1 > 50) {
-            /*if (reading1 <= 200) {
-                bufferTransmitDF(0x06, 0x00, 0x06);
+        if (reading2 > 100 && prevHH <= 100) {
+            if (reading2 < 300) {
+                bufferTransmitDF(0x06, 0x00, 0x14);
             }
-            else if (reading1 <= 400) {
-                bufferTransmitDF(0x06, 0x00, 0x0C);
-            }
-            else if (reading1 <= 600) {
-                bufferTransmitDF(0x06, 0x00, 0x12);
-            }
-            else if (reading1 <= 800) {
-                bufferTransmitDF(0x06, 0x00, 0x18);
+            else if (reading2 < 600) {
+                bufferTransmitDF(0x06, 0x00, 0x19);
             }
             else {
                 bufferTransmitDF(0x06, 0x00, 0x1E);
-            }*/
-            bufferTransmitDF(0x03, 0x00, 0x01);
+            }
+            _delay_ms(60);
+            //bufferTransmitDF(0x03, 0x00, 0x02);
+            play_track(2);
+        }
+        if (reading1 > 100 && prevSnare <= 100) {
+            if (reading1 < 300) {
+                bufferTransmitDF(0x06, 0x00, 0x14);
+            }
+            else if (reading1 < 600) {
+                bufferTransmitDF(0x06, 0x00, 0x19);
+            }
+            else {
+                bufferTransmitDF(0x06, 0x00, 0x1E);
+            }
+            _delay_ms(60);
+            //bufferTransmitDF(0x03, 0x00, 0x01);
+            play_track(1);
+        }
+        if (reading0 > 100 && prevBass <= 100) {
+            if (reading0 < 300) {
+                bufferTransmitDF(0x06, 0x00, 0x14);
+            }
+            else if (reading0 < 600) {
+                bufferTransmitDF(0x06, 0x00, 0x19);
+            }
+            else {
+                bufferTransmitDF(0x06, 0x00, 0x1E);
+            }
+            _delay_ms(60);
+            //bufferTransmitDF(0x03, 0x00, 0x03);
+            play_track(3);
         }
         
-        if (reading0 > 50) {
-            bufferTransmitDF(0x03, 0x00, 0x02);
-        }
-        
-        if (reading2 > 50) {
-            bufferTransmitDF(0x03, 0x00, 0x03);
-        }
-        
-        //bufferTransmitDF(0x03, 0x00, 0x01);
-        _delay_ms(500);
+        prevHH = reading2;
+        prevSnare = reading1;
+        prevBass = reading0;
     }
 
     return 0;
