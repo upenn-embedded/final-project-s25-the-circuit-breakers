@@ -25,11 +25,11 @@ This project is very interesting because we ideate and develop a more expressive
 
 Hardware Design:
 
-![](blockdiagram.png)
+![](images/blockdiagram.png)
 
 Software Design:
 
-![](projSoftwareDesign.png)
+![](images/projSoftwareDesign.png)
 
 ### 4. Design Sketches
 
@@ -40,7 +40,7 @@ Critical design features?
 There will be some special manufacturing techniques required such as 3D printing/laser cutting to create housing for the electronics, 3D printing to create the drum pads, and 3D printing to create the wristband for the accelerometer/gyroscope.
 
 
-![](finalProjDesign.jpeg)
+![](images/finalProjDesign.jpeg)
 
 We will need to 3D print a box to place the three subsystems of our project. On the base of the box, the turntable will be printed onto the base and the pads are placed to the right. Platforms will be placed above the pressure sensors and the circuitry will be placed inside the box (breadboard + wiring for the sensors). The accelerator is tied to the wrist using a band for use in simulating the turntable.
 
@@ -123,7 +123,7 @@ We have built the part of the circuit that will be used for the piano, which con
 ### Current state of project
 We are currently waiting on the arrival of crucial parts to our project. In the meantime, we each have been sourcing available parts from lab, doing research for our implementation, and working on parts that are not dependent on the DFP Audio Module. Currently, we have the piano part of the circuit set up and almost fully working (will be complete when speaker arrives).
 
-![](pianoKeysWeek1.jpeg)
+![](images/pianoKeysWeek1.jpeg)
 
 
 ### Next week's plan
@@ -135,11 +135,11 @@ For the coming week we are expecting the DFP module to arrive as well as the oth
 Last week, we did research on the three primary subsytems for our DJ set, the piano, drums, and IMU control. We each worked individually on parts not dependent on the DF Player Module and helped each other out on the implementation of certain tasks. The piano keys circuitry is complete including the buzzer and rotary encoder. We are recieving input values from the encoder and outputting different frequencies but facing a challenge wehre certain frequencies are not playing. The IMU wiring is done and is being tested. The force sensors were also wired to the breadboard and experimented with using ADC.
 
 ### Current state of project
-![](forceSensorCircuit.jpeg)
+![](images/forceSensorCircuit.jpeg)
 
-![](forceSerialTest.jpeg)
+![](images/forceSerialTest.jpeg)
 
-![](pianoKeysWeek2.jpeg)
+![](images/pianoKeysWeek2.png)
 
 We have received the parts we ordered and are currently working on individual parts of the DJ set, focusing on bringing everything together through power management. Software for the IMU is in progress and the force sensors have been implemented through ADC. We are also focusing on debugging software and hardware for the piano based on the buttons and knob.
 
@@ -149,7 +149,7 @@ The plan for next week is to mainly implement the DFP module for use in our proj
 ## MVP Demo
 
 1. Show a system block diagram & explain the hardware implementation.
-![alt text](newhardwarechart.png)
+![](images/newhardwarechart.png)
 
 The ATMega328PB controls all three parts of MicroBeat, the piano, drumset, and IMU implementation. The microcontroller is connected to the DF Player Mini Module through an RX to TX connection. The DF Player Mini is then wired to the speaker output. Additionally, the microcontroller is wired to the three force sensors, simulating a snare, bass drum, and a hi-hat. For the piano, the rotary encoder and buttons are connected to the microcontroller through GPIO and the speaker is connected through PWM. The IMU is connected to a separate ATMega328Pb and will eventually be wired to another DF Player Mini for song modulation (playback speed and pause functionality).
 
@@ -160,6 +160,7 @@ The code for the piano is based on PWM, changing OCR1A and OCR1B according to a 
 3. Demo your device.
 
 [Slideshow Link](https://docs.google.com/presentation/d/1nYgInTRyewJpaWn2flAvf959YhefqQQz_XKIyyjOefc/edit?usp=sharing)
+
 Demoed with James
 
 4. Have you achieved some or all of your Software Requirements Specification (SRS)?
@@ -173,16 +174,16 @@ Data was collected through printing out to the serial monitor and cross-checking
 
 Checking PWM encodings through oscilloscope:
 Key 0, octave 0 ~ expected: 523 Hz, actual: 522 Hz
-![](octave0.jpg)
+![](images/octave0.jpg)
 
 Key 0, octave 1 ~ expected: 261 Hz, actual: 522 Hz
-![](octave1.jpg)
+![](images/octave1.jpg)
 
 Key 0, octave 2 ~ expected: 1046 Hz, actual: 522 Hz
-![](octave2.jpg)
+![](images/octave2.jpg)
 
 Key 0, octave 3 ~ expected: 1046 Hz, actual: 522 Hz
-![](octave3.jpg)
+![](images/octave3.jpg)
 
 5. Have you achieved some or all of your Hardware Requirements Specification (HRS)?
 
@@ -192,7 +193,7 @@ We did achieve maximum functionality with the rotary encoder by using buttons to
 
 Data for the IMU was collected by printing to the serial monitor and noticing change in the relative axes. The DF Player Mini was experimented with and wired up with a voltage divider of 1 kOhms and 2.2 kOhms to provide 3.3 V to the RX and TX pins. Speakers were first tested with a square wave produced by the waveform generator before being implemented into the circuit.
 
-![](dfPlayerCircuit.jpeg)
+![](images/dfPlayerCircuit.jpeg)
 
 6. Show off the remaining elements that will make your project whole: mechanical casework, supporting graphical user interface (GUI), web portal, etc.
 
