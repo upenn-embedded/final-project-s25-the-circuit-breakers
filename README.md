@@ -1,4 +1,5 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/WXeqVgks)
+
 # final-project-skeleton
 
 * Team Number: 11
@@ -39,7 +40,6 @@ Critical design features?
 
 There will be some special manufacturing techniques required such as 3D printing/laser cutting to create housing for the electronics, 3D printing to create the drum pads, and 3D printing to create the wristband for the accelerometer/gyroscope.
 
-
 ![](finalProjDesign.jpeg)
 
 We will need to 3D print a box to place the three subsystems of our project. On the base of the box, the turntable will be printed onto the base and the pads are placed to the right. Platforms will be placed above the pressure sensors and the circuitry will be placed inside the box (breadboard + wiring for the sensors). The accelerator is tied to the wrist using a band for use in simulating the turntable.
@@ -56,13 +56,13 @@ Here, you will define any special terms, acronyms, or abbreviations you plan to 
 
 **5.2 Functionality**
 
-| ID     | Description                                                                                                                                                                                                              |
-| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| SRS-01 | Real time sensor input processing: System shall accurately detect pressure changes (drums), potentiometer adjustments (note change), and accelerometer motion to trigger corresponding audio responses. To validate this we shall use an oscilloscope or logic analyzer to verify signal integrity and response time from sensors to the ATmega328’s input pins.                                                                                                                |
-| SRS-02 | Communication between AtMega and DFP Module: The system shall send UART commands to the DFPlayer Mini MP3 module with minimal delay to ensure immediate sound output upon input detection. We shall validate this by measuring delay between input activation and audio playback using timestamp logging.                                                                                                                                         |
-| SRS-03 | ADC Input handling: The rotary encoder (volume control) and pressure sensors shall be read via ADC, mapped to corresponding levels, and converted into digital signals for audio processing. We shall validate this by comparing raw ADC values with expected sensor outputs to ensure accurate readings within ±5% error margin. |
-| SRS-04 | Piano note generation + Pitch control (PWM): The system shall detect button presses and assign the corresponding octave by setting a predefined frequency range. The system shall read the potentiometer's ADC value and map it to specific note frequencies within the selected octave. The system shall use Timer1 (OCR1A register) to generate a PWM square wave at the required frequency based on the selected octave and note. We shall use an oscilloscope to verify correct frequency output for each button press and potentiometer adjustment.                                                                                |
-| SRS-05 | Turntable movement detection: The system shall detect certain shapes from the accelerometer/gyroscope setup such as a circular motion, shaking, and vertical movement. We shall test this functionality by rigorously testing the setup in a real environment to determine if the desired shape is being recorded.|
+| ID     | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| SRS-01 | Real time sensor input processing: System shall accurately detect pressure changes (drums), potentiometer adjustments (note change), and accelerometer motion to trigger corresponding audio responses. To validate this we shall use an oscilloscope or logic analyzer to verify signal integrity and response time from sensors to the ATmega328’s input pins.                                                                                                                                                                                        |
+| SRS-02 | Communication between AtMega and DFP Module: The system shall send UART commands to the DFPlayer Mini MP3 module with minimal delay to ensure immediate sound output upon input detection. We shall validate this by measuring delay between input activation and audio playback using timestamp logging.                                                                                                                                                                                                                                                |
+| SRS-03 | ADC Input handling: The rotary encoder (volume control) and pressure sensors shall be read via ADC, mapped to corresponding levels, and converted into digital signals for audio processing. We shall validate this by comparing raw ADC values with expected sensor outputs to ensure accurate readings within ±5% error margin.                                                                                                                                                                                                                       |
+| SRS-04 | Piano note generation + Pitch control (PWM): The system shall detect button presses and assign the corresponding octave by setting a predefined frequency range. The system shall read the potentiometer's ADC value and map it to specific note frequencies within the selected octave. The system shall use Timer1 (OCR1A register) to generate a PWM square wave at the required frequency based on the selected octave and note. We shall use an oscilloscope to verify correct frequency output for each button press and potentiometer adjustment. |
+| SRS-05 | Turntable movement detection: The system shall detect certain shapes from the accelerometer/gyroscope setup such as a circular motion, shaking, and vertical movement. We shall test this functionality by rigorously testing the setup in a real environment to determine if the desired shape is being recorded.                                                                                                                                                                                                                                       |
 
 ### 6. Hardware Requirements Specification (HRS)
 
@@ -76,14 +76,14 @@ Here, you will define any special terms, acronyms, or abbreviations you plan to 
 
 **6.2 Functionality**
 
-| ID     | Description                                                                                                                        |
-| ------ | ---------------------------------------------------------------------------------------------------------------------------------- |
+| ID     | Description                                                                                                                                                                                                                                                                                                                                    |
+| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | HRS-01 | The pressure sensors shall carry a maximum load of 1 kg of applied force and measurements above this threshold shall saturate to 1 kg. Connected to a speaker, drum pads attached to the sensors shall mimic sounds of a hi-hat, snare, and bass drum. ADC readings shall change the volume of these sounds according to the pressure applied. |
-| HRS-02 | The rotary encoder shall be set at one of 8 notes in the current octave out of 4, depending on the amount turned.                                                           |
-| HRS-03 | Filtering with resistor and transistor shall be used to smooth out the PWM signal before being sent to speaker output.                     |
-| HRS-04 | Speakers shall be used to output preloaded music and signals sent from the piano and drum pads. This shall be validated through using the DFPlayer module where 30 module levels dictate the volume at which the signal is sent at.                     |
-| HRS-05 | The IMU should have a 500 Hz sampling rate because it should be sufficient to detect most fast hand motions. We can test if this condition is met by sampling for 1 second and confirming the number of recorded samples is 500. |
-| HRS-06 | The IMU should also have accurate relative position and rotation accuracy. This can be tested by making various hand motions and confirming that the motion is being accurately represented by the IMU via 3D plotting. |
+| HRS-02 | The rotary encoder shall be set at one of 8 notes in the current octave out of 4, depending on the amount turned.                                                                                                                                                                                                                              |
+| HRS-03 | Filtering with resistor and transistor shall be used to smooth out the PWM signal before being sent to speaker output.                                                                                                                                                                                                                         |
+| HRS-04 | Speakers shall be used to output preloaded music and signals sent from the piano and drum pads. This shall be validated through using the DFPlayer module where 30 module levels dictate the volume at which the signal is sent at.                                                                                                            |
+| HRS-05 | The IMU should have a 500 Hz sampling rate because it should be sufficient to detect most fast hand motions. We can test if this condition is met by sampling for 1 second and confirming the number of recorded samples is 500.                                                                                                               |
+| HRS-06 | The IMU should also have accurate relative position and rotation accuracy. This can be tested by making various hand motions and confirming that the motion is being accurately represented by the IMU via 3D plotting.                                                                                                                        |
 
 ### 7. Bill of Materials (BOM)
 
@@ -105,51 +105,55 @@ We will demo the device by playing a preloaded song and individually demonstrati
 
 *You've got limited time to get this project done! How will you plan your sprint milestones? How will you distribute the work within your team? Review the schedule in the final project manual for exact dates.*
 
-| Milestone  | Functionality Achieved | Distribution of Work |
-| ---------- | ---------------------- | -------------------- |
-| Sprint #1  |  Source all the hardware and plan the structure and exact functionality of software and build CAD                      |  Eshan: Turntable/Sound morpher, Mohit: Drum pads, Nandini: Piano                    |
-| Sprint #2  | Build software and generate cohesive working prototype                       |  Eshan: Turntable/Sound morpher, Mohit: Drum pads, Nandini: Piano                    |
-| MVP Demo   |  Work through integration bugs and flow                      | Working together to solve issues                     |
-| Final Demo |   Rigorously test and enable additional functionality (if possible)                     |   Working together to solve issues                   |
+| Milestone  | Functionality Achieved                                                                           | Distribution of Work                                             |
+| ---------- | ------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------- |
+| Sprint #1  | Source all the hardware and plan the structure and exact functionality of software and build CAD | Eshan: Turntable/Sound morpher, Mohit: Drum pads, Nandini: Piano |
+| Sprint #2  | Build software and generate cohesive working prototype                                           | Eshan: Turntable/Sound morpher, Mohit: Drum pads, Nandini: Piano |
+| MVP Demo   | Work through integration bugs and flow                                                           | Working together to solve issues                                 |
+| Final Demo | Rigorously test and enable additional functionality (if possible)                                | Working together to solve issues                                 |
 
 **This is the end of the Project Proposal section. The remaining sections will be filled out based on the milestone schedule.**
 
 ## Sprint Review #1
 
 ### Last week's progress
+
 We have built the part of the circuit that will be used for the piano, which controls piano notes and octaves. To control the keys in the octave, we switched from the potentiometer to a rotary encoder. The octave is controlled by 2 buttons that send the octave up or down. For now, the output is connected to a buzzer but when our parts arrive we will be using a speaker instead. We have also ordered parts and are discussing things to work on during the time that parts don't arrive.
 
-
 ### Current state of project
+
 We are currently waiting on the arrival of crucial parts to our project. In the meantime, we each have been sourcing available parts from lab, doing research for our implementation, and working on parts that are not dependent on the DFP Audio Module. Currently, we have the piano part of the circuit set up and almost fully working (will be complete when speaker arrives).
 
 ![](pianoKeysWeek1.jpeg)
 
-
 ### Next week's plan
-For the coming week we are expecting the DFP module to arrive as well as the other parts. First we can finish off the piano part of the project by connecting the speaker to the circuit. We will work on learning how to use the DFP module including uploading MP3 files to it, connecting it to the ATMega328 and connecting our speaker to test output. Once this is working we are going to aim to finish the circuitry set up for the pressure pads for the drum beats and the set up for the gyroscope and accelerometer. Once we can properly read in input then the following week we can work on refining the code. Along with this, we will aim to have a rough draft for our 3D printing.  
+
+For the coming week we are expecting the DFP module to arrive as well as the other parts. First we can finish off the piano part of the project by connecting the speaker to the circuit. We will work on learning how to use the DFP module including uploading MP3 files to it, connecting it to the ATMega328 and connecting our speaker to test output. Once this is working we are going to aim to finish the circuitry set up for the pressure pads for the drum beats and the set up for the gyroscope and accelerometer. Once we can properly read in input then the following week we can work on refining the code. Along with this, we will aim to have a rough draft for our 3D printing.
 
 ## Sprint Review #2
 
 ### Last week's progress
+
 Last week, we did research on the three primary subsytems for our DJ set, the piano, drums, and IMU control. We each worked individually on parts not dependent on the DF Player Module and helped each other out on the implementation of certain tasks. The piano keys circuitry is complete including the buzzer and rotary encoder. We are recieving input values from the encoder and outputting different frequencies but facing a challenge wehre certain frequencies are not playing. The IMU wiring is done and is being tested. The force sensors were also wired to the breadboard and experimented with using ADC.
 
 ### Current state of project
-![](forceSensorCircuit.jpeg)
 
-![](forceSerialTest.jpeg)
+![text](forceSensorCircuit.jpeg)
 
-![](pianoKeysWeek2.jpeg)
+![text](forceSerialTest.jpeg)
+
+![text](pianoKeysWeek2.jpeg)
 
 We have received the parts we ordered and are currently working on individual parts of the DJ set, focusing on bringing everything together through power management. Software for the IMU is in progress and the force sensors have been implemented through ADC. We are also focusing on debugging software and hardware for the piano based on the buttons and knob.
 
 ### Next week's plan
-The plan for next week is to mainly implement the DFP module for use in our project, generating sounds at different volumes. The module's input will be an ADC read from 3 channels of the force sensors, representing the hi-hat, snare drum, and bass drum. One of the primary tasks is to interface the sensors' output with the input of the module, and gaining familiarity with how to program the player in Arduino IDE. Another task is to write the I2C driver for the IMU and moving towards implementation of motion feedback for the generated tunes. We will then test out the IMU with the rest of the system. For the piano, we want to fix our current bug with specific frequencies and change the output from a buzzer to a speaker. We want to also use the oscilloscope to capture signals for testing. 
+
+The plan for next week is to mainly implement the DFP module for use in our project, generating sounds at different volumes. The module's input will be an ADC read from 3 channels of the force sensors, representing the hi-hat, snare drum, and bass drum. One of the primary tasks is to interface the sensors' output with the input of the module, and gaining familiarity with how to program the player in Arduino IDE. Another task is to write the I2C driver for the IMU and moving towards implementation of motion feedback for the generated tunes. We will then test out the IMU with the rest of the system. For the piano, we want to fix our current bug with specific frequencies and change the output from a buzzer to a speaker. We want to also use the oscilloscope to capture signals for testing.
 
 ## MVP Demo
 
 1. Show a system block diagram & explain the hardware implementation.
-![alt text](newhardwarechart.png)
+   ![alt text](newhardwarechart.png)
 
 The ATMega328PB controls all three parts of MicroBeat, the piano, drumset, and IMU implementation. The microcontroller is connected to the DF Player Mini Module through an RX to TX connection. The DF Player Mini is then wired to the speaker output. Additionally, the microcontroller is wired to the three force sensors, simulating a snare, bass drum, and a hi-hat. For the piano, the rotary encoder and buttons are connected to the microcontroller through GPIO and the speaker is connected through PWM. The IMU is connected to a separate ATMega328Pb and will eventually be wired to another DF Player Mini for song modulation (playback speed and pause functionality).
 
@@ -166,10 +170,9 @@ Demoed with James
 
 We have achieved only one sound being playing at a time for the drumset through ADC testing and finding the threshold where exactly one of the sensors activates. We have also tested frequencies and ensured that OCR1A is set appropriately by measuring the oscilloscope.
 
-   1. Show how you collected data and the outcomes.
+1. Show how you collected data and the outcomes.
 
 Data was collected through printing out to the serial monitor and cross-checking measurements onto the scope. The serial data printed is similar to last week's sprint.
-
 
 Checking PWM encodings through oscilloscope:
 Key 0, octave 0 ~ expected: 523 Hz, actual: 522 Hz
@@ -188,7 +191,7 @@ Key 0, octave 3 ~ expected: 1046 Hz, actual: 522 Hz
 
 We did achieve maximum functionality with the rotary encoder by using buttons to play multiple octaves of a scale. A resistor and transistor was in fact placed to smooth out the PWM signal. Different commands for the DF Player Mini were tested by experimenting with different volume levels and audio files to ensure playback.
 
-   1. Show how you collected data and the outcomes.
+1. Show how you collected data and the outcomes.
 
 Data for the IMU was collected by printing to the serial monitor and noticing change in the relative axes. The DF Player Mini was experimented with and wired up with a voltage divider of 1 kOhms and 2.2 kOhms to provide 3.3 V to the RX and TX pins. Speakers were first tested with a square wave produced by the waveform generator before being implemented into the circuit.
 
@@ -202,7 +205,7 @@ The DF Player Mini Module was showcased by displaying its various commands. The 
 
 The riskiest part remaining is to integrate all individual parts together. This will require thorough planning based on where we want to position the circuits and other parts like the speakers.
 
-   1. How do you plan to de-risk this?
+1. How do you plan to de-risk this?
 
 We plan to de-risk this by optimizing and considering what pins are needed from all of the individual parts before integrating into the overall circuit. There is a possibility for pin overlap, requiring us to make changes to our code such as timers if needed. We will also all come into the lab one day to fit everything together on the box.
 
@@ -233,6 +236,16 @@ If you’ve never made a GitHub pages website before, you can follow this webpag
 ### 3. Results
 
 *What were your results? Namely, what was the final solution/design to your problem?*
+
+Our final solution was a fully functional, compact DJ system— **MicroBeat** —designed to make interactive music production more intuitive, expressive, and accessible. The device integrates three unique components, each offering distinct control over audio in a DJ-style setup:
+
+* **Piano Keys Module** : This section allowed users to twist a rotary encoder to cycle through eight musical notes within a scale, with two additional buttons enabling octave shifts across four octaves. Pressing the encoder would play the selected note through a speaker, powered by PWM-based frequency generation for accurate audio output.
+* **Drum Pad Module** : We embedded three pressure sensors to simulate a snare drum, hi-hat, and bass drum. Each sensor was mapped to a specific sound, with the volume modulated by the force of the user’s tap—mimicking real drum dynamics and adding a tactile dimension to the DJ experience.
+* **Motion-Controlled Turntable Module** : A wearable IMU wristband allowed users to control music playback expressively. Raising or lowering the wrist dynamically adjusted the volume of the background track, while wrist rotations produced a scratch-like distortion effect, replicating classic DJ techniques in an entirely new form.
+
+All modules were integrated into a custom-designed, laser-cut enclosure featuring three dedicated speakers—one for each subsystem. The result is a portable, cohesive mini DJ set that unites gesture, pressure, and rotary input to produce a real-time, performative musical experience.
+
+This project not only achieved its technical goals but also delivered an engaging, hands-on interface for music control—bringing professional-style audio manipulation into an accessible form factor.
 
 #### 3.1 Software Requirements Specification (SRS) Results
 
