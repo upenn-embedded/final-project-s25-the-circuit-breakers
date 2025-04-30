@@ -282,6 +282,7 @@ We had to modify some of the SRS requirements for the piano keys portion of the 
 | ------ | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | HRS-01 | A distance sensor shall be used for obstacle detection. The sensor shall detect obstacles at a maximum distance of at least 10 cm. | Confirmed, sensed obstacles up to 15cm. Video in "validation" folder, shows tape measure and logged output to terminal.                                                            |
 | HRS-02 | The rotary encoder shall be set at one of 8 notes in the current octave out of 4, depending on the amount turned.                  | Confirmed. We checked through terminal of mappings of rotary encoder to key as well as mapped each key to its corresponding frequency to generate the correct 'top' value for PWM. |
+| HRS-03 | Filtering with resistor and transistor shall be used to smooth out the PWM signal before being sent to speaker output.             | Confirmed. Photo attached below.                                                                                                                                                   |
 
 ### 4. Conclusion
 
