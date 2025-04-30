@@ -121,7 +121,7 @@ We have built the part of the circuit that will be used for the piano, which con
 
 
 ### Current state of project
-We are currently waiting on the arrival of crucial parts to our project. In the meantime, we each have been sourcing available parts from lab, doing research for our implementation, and working on parts that are not dependent on the DFP Audio Module. Currently, we have the piano part of the circuit set up and almost fully working (will be complete when speaker arrives). 
+We are currently waiting on the arrival of crucial parts to our project. In the meantime, we each have been sourcing available parts from lab, doing research for our implementation, and working on parts that are not dependent on the DFP Audio Module. Currently, we have the piano part of the circuit set up and almost fully working (will be complete when speaker arrives).
 
 ![](pianoKeysWeek1.jpeg)
 
