@@ -237,6 +237,8 @@ If you’ve never made a GitHub pages website before, you can follow this webpag
 
 [Video Link](https://drive.google.com/file/d/1T769cpi5EzbI6ozpxScFyecJ4dDb8UZ9/view?usp=sharing)
 
+[Website](https://upenn-embedded.github.io/final-project-s25-the-circuit-breakers/)
+
 ### 2. Images
 
 [Insert final project images here]
