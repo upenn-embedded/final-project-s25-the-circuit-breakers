@@ -6,7 +6,7 @@
 * Team Name: Circuit Breakers
 * Team Members: Eshan Singhal, Mohit Shah, Nandini Swami
 * GitHub Repository URL: https://github.com/upenn-embedded/final-project-s25-the-circuit-breakers
-* GitHub Pages Website URL: [for final submission]
+* GitHub Pages Website URL: [for final submission] [Website Link](https://upenn-embedded.github.io/final-project-s25-the-circuit-breakers/)
 
 ## Final Project Proposal
 
@@ -236,8 +236,6 @@ If you’ve never made a GitHub pages website before, you can follow this webpag
 * Points will be removed if the audio quality is poor - say, if you filmed your video in a noisy electrical engineering lab.
 
 [Video Link](https://drive.google.com/file/d/1T769cpi5EzbI6ozpxScFyecJ4dDb8UZ9/view?usp=sharing)
-
-[Website](https://upenn-embedded.github.io/final-project-s25-the-circuit-breakers/)
 
 ### 2. Images
 
