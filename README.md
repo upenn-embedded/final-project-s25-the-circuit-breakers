@@ -235,11 +235,18 @@ If you’ve never made a GitHub pages website before, you can follow this webpag
 * Ensure your video link is accessible to the teaching team. Unlisted YouTube videos or Google Drive uploads with SEAS account access work well.
 * Points will be removed if the audio quality is poor - say, if you filmed your video in a noisy electrical engineering lab.
 
+[Video Link](https://drive.google.com/file/d/1T769cpi5EzbI6ozpxScFyecJ4dDb8UZ9/view?usp=sharing)
+
 ### 2. Images
 
 [Insert final project images here]
 
 *Include photos of your device from a few angles. If you have a casework, show both the exterior and interior (where the good EE bits are!).*
+
+Pictures for the outside...
+![](images/outside1.JPEG)
+
+![](images/outside2.JPEG)
 
 ### 3. Results
 
